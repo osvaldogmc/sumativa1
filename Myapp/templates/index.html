@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static '/styles.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="titulo">
+        <h1>Bienvenido a la calculadora</h1>
+    </div>
+        <div class="tabla">
+           <form method="post" action="/">
+                {% csrf_token %}
+                <label>Operador 1: </label>
+                <input type="text" name="operador1" value="{{ operador1 }}">
+        </div>
+            <div class="operacion">
+                <label>Operacion:</label>
+                <label for="suma"><input type="radio"  name="operacion" value="suma" id="operacion1">+</label>
+                <label for="resta"><input type="radio"  name="operacion" value="resta" id="operacion2">-</label>
+                <label for="multi"><input type="radio"  name="operacion" value="multi" id="operacion3">*</label>
+                <label for="divi"><input type="radio"  name="operacion" value="divi" id="operacion4">/</label>
+            </div>
+            <div class="tabla">
+                <label>Operador 2: </label>
+                <input type="text" name="operador2" value="{{ operador2 }}">
+            </div>
+            <div>
+                <button class="btn" type="submit">Calcular</button>
+            </div>
+                <h2 class="tabla">Resultado:{{resultado}}</h2>
+            </form>
+    <script>
+        let operacion = "{{ operacion }}";
+        if (operacion == "suma"){
+            document.getElementById("operacion1").checked = true;
+        }else if (operacion == "resta"){
+            document.getElementById("operacion2").checked = true;
+        }else if (operacion == "multi"){
+            document.getElementById("operacion3").checked = true;
+        }else if (operacion == "divi"){
+            document.getElementById("operacion4").checked = true;
+        }
+    </script>
+</body>
+</html>
